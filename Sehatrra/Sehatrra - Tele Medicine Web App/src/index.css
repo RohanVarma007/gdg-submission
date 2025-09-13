@@ -1,0 +1,420 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --healthcare-cyan: #06b6d4;
+  --healthcare-mint: #10b981;
+  --healthcare-green: #059669;
+  --healthcare-blue: #0ea5e9;
+  --healthcare-teal: #14b8a6;
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-gradient: linear-gradient(135deg, #f0fdfa 0%, #ecfeff 100%);
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-gradient: linear-gradient(135deg, #0a0a0a 0%, #111111 100%);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border-color: #1f1f1f;
+  --card-bg: rgba(17, 17, 17, 0.95);
+  --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+.accent-text {
+  @apply text-slate-600 dark:text-slate-400;
+}
+
+body {
+  font-family:
+    "Inter Variable",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji";
+  color: var(--text-primary);
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+/* Healthcare themed animations */
+@keyframes pulse-healthcare {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.healthcare-gradient {
+  background: linear-gradient(135deg, #06b6d4 0%, #10b981 50%, #0ea5e9 100%);
+}
+
+/* Healthcare cards */
+.healthcare-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  @apply rounded-3xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  backdrop-filter: blur(10px);
+}
+
+/* Healthcare buttons */
+.healthcare-button-primary {
+  @apply px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600 flex items-center justify-center;
+  box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+}
+
+.healthcare-button-secondary {
+  @apply px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 bg-gradient-to-r from-emerald-500 to-teal-500 text-white hover:from-emerald-600 hover:to-teal-600 flex items-center justify-center;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+}
+
+.healthcare-button-success {
+  @apply px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:from-green-600 hover:to-emerald-600 flex items-center justify-center;
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
+}
+
+.healthcare-button-danger {
+  @apply px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 bg-gradient-to-r from-red-500 to-pink-500 text-white hover:from-red-600 hover:to-pink-600 flex items-center justify-center;
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+}
+
+/* Healthcare inputs */
+.healthcare-input {
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  @apply w-full px-6 py-4 rounded-full focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 outline-none transition-all duration-300 placeholder-slate-400 dark:placeholder-slate-500;
+  backdrop-filter: blur(10px);
+}
+
+/* Healthcare tabs */
+.healthcare-tab-active {
+  @apply flex items-center gap-3 px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg;
+  box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+}
+
+.healthcare-tab-inactive {
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  @apply flex items-center gap-3 px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 border-2 border-slate-200 dark:border-slate-700 hover:border-cyan-300 dark:hover:border-cyan-600 hover:bg-cyan-50 dark:hover:bg-cyan-900/20;
+}
+
+/* Pill-shaped cards with Samsung One UI inspiration */
+.pill-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  @apply rounded-3xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  backdrop-filter: blur(10px);
+}
+
+.pill-card-small {
+  @apply pill-card rounded-2xl;
+}
+
+.pill-card-large {
+  @apply pill-card rounded-[2rem];
+}
+
+/* Pill buttons */
+.pill-button {
+  @apply px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.pill-button-primary {
+  @apply pill-button bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600;
+  box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+}
+
+.pill-button-secondary {
+  @apply pill-button bg-gradient-to-r from-emerald-500 to-teal-500 text-white hover:from-emerald-600 hover:to-teal-600;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+}
+
+.pill-button-success {
+  @apply pill-button bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:from-green-600 hover:to-emerald-600;
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
+}
+
+.pill-button-danger {
+  @apply pill-button bg-gradient-to-r from-red-500 to-pink-500 text-white hover:from-red-600 hover:to-pink-600;
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+}
+
+.pill-button-warning {
+  @apply pill-button bg-gradient-to-r from-yellow-500 to-orange-500 text-white hover:from-yellow-600 hover:to-orange-600;
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+}
+
+.pill-button-purple {
+  @apply pill-button bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600;
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3);
+}
+
+.pill-button-small {
+  @apply px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 active:scale-95;
+}
+
+/* Pill inputs */
+.pill-input {
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  @apply w-full px-6 py-4 rounded-full focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 outline-none transition-all duration-300 placeholder-slate-400 dark:placeholder-slate-500;
+  backdrop-filter: blur(10px);
+}
+
+/* Pill tabs */
+.pill-tab {
+  @apply flex items-center gap-3 px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105;
+}
+
+.pill-tab-active {
+  @apply pill-tab bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg;
+  box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+}
+
+.pill-tab-inactive {
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  @apply pill-tab border-2 border-slate-200 dark:border-slate-700 hover:border-cyan-300 dark:hover:border-cyan-600 hover:bg-cyan-50 dark:hover:bg-cyan-900/20;
+}
+
+/* Colorful pill widgets */
+.pill-widget-blue {
+  @apply pill-card bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border-blue-200 dark:border-blue-800;
+}
+
+.pill-widget-green {
+  @apply pill-card bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-800;
+}
+
+.pill-widget-purple {
+  @apply pill-card bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border-purple-200 dark:border-purple-800;
+}
+
+.pill-widget-yellow {
+  @apply pill-card bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 border-yellow-200 dark:border-yellow-800;
+}
+
+.pill-widget-red {
+  @apply pill-card bg-gradient-to-br from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/20 border-red-200 dark:border-red-800;
+}
+
+.pill-widget-teal {
+  @apply pill-card bg-gradient-to-br from-teal-50 to-cyan-50 dark:from-teal-900/20 dark:to-cyan-900/20 border-teal-200 dark:border-teal-800;
+}
+
+/* Icon containers */
+.pill-icon {
+  @apply w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-lg;
+}
+
+.pill-icon-large {
+  @apply w-20 h-20 rounded-3xl flex items-center justify-center text-white shadow-xl;
+}
+
+/* Animations */
+.pulse-healthcare {
+  animation: pulse-healthcare 2s infinite;
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+.heartbeat-animation {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Theme toggle button - fixed positioning */
+.theme-toggle {
+  @apply fixed top-6 right-6 z-50 p-4 rounded-full bg-white/90 dark:bg-slate-800/90 border-2 border-slate-200 dark:border-slate-700 transition-all duration-300 hover:scale-110 shadow-lg;
+  backdrop-filter: blur(10px);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #06b6d4, #10b981);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #0891b2, #059669);
+}
+
+/* Status badges */
+.status-badge {
+  @apply px-4 py-2 rounded-full text-sm font-semibold;
+}
+
+.status-completed {
+  @apply status-badge bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-2 border-green-200 dark:border-green-800;
+}
+
+.status-scheduled {
+  @apply status-badge bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-2 border-blue-200 dark:border-blue-800;
+}
+
+.status-in-progress {
+  @apply status-badge bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 border-2 border-yellow-200 dark:border-yellow-800;
+}
+
+.status-cancelled {
+  @apply status-badge bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 border-2 border-red-200 dark:border-red-800;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  @apply animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-600;
+}
+
+/* Glassmorphism effect */
+.glass-effect {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+}
+
+/* Compact dashboard layout */
+.dashboard-container {
+  @apply max-w-6xl mx-auto px-4 py-6;
+}
+
+.dashboard-content {
+  @apply space-y-6;
+}
+
+/* Responsive pill grid */
+.pill-grid {
+  @apply grid gap-4;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.pill-grid-small {
+  @apply grid gap-3;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Hover effects for interactive elements */
+.interactive-pill {
+  @apply cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-xl active:scale-[0.98];
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply bg-gradient-to-r from-cyan-600 via-blue-600 to-teal-600 bg-clip-text text-transparent;
+}
+
+/* Compact spacing utilities */
+.compact-space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+.compact-space-y-6 > * + * {
+  margin-top: 1.5rem;
+}
+
+/* Auth form styles */
+.auth-input-field {
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  @apply w-full px-6 py-4 rounded-full focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 outline-none transition-all duration-300 placeholder-slate-400 dark:placeholder-slate-500;
+  backdrop-filter: blur(10px);
+}
+
+.auth-button {
+  @apply w-full px-6 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+}
+
+.gap-form-field {
+  gap: 1rem;
+}
